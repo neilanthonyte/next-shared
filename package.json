@@ -25,6 +25,7 @@
     "debug": "4.3.1",
     "express": "4.17.1",
     "http": "0.0.1-security",
+    "inversify": "6.0.1",
     "knex": "1.0.7",
     "libphonenumber-js": "^1.9.50",
     "moment-timezone": "^0.5.43",
