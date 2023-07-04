@@ -1,0 +1,105 @@
+import {
+  ISerializedOpsAction,
+  OpsAction,
+} from "next-shared/src/models/OpsAction";
+import { TOpsActionStatus } from "next-shared/src/types/IOpsActionsWithMetrics";
+import { currentUnixTimestamp } from "../helpers/currentUnixTimestamp";
+
+export const mockOpsActionsSerialized: ISerializedOpsAction[] = [
+  {
+    id: 1,
+    resolved: false,
+    critical: false,
+    title: "Test Ops Actions",
+    instructions: "Test Ops Actions Instructions",
+    locationId: "1",
+    status: "active" as TOpsActionStatus,
+    resolvedAt: null,
+    createdAt: currentUnixTimestamp(),
+  },
+  {
+    id: 2,
+    resolved: false,
+    title: "Test Ops Actions One",
+    instructions: "Test Ops Actions Instructions",
+    locationId: "1",
+    status: "active" as TOpsActionStatus,
+    critical: false,
+    resolvedAt: null,
+    createdAt: currentUnixTimestamp(),
+  },
+  {
+    id: 3,
+    resolved: false,
+    title: "Test Ops Actions Three",
+    instructions: "Test Ops Actions Instructions",
+    locationId: "1",
+    status: "inactive" as TOpsActionStatus,
+    critical: false,
+    resolvedAt: null,
+    createdAt: currentUnixTimestamp(),
+  },
+  {
+    id: 4,
+    resolved: false,
+    critical: false,
+    parentType: "task",
+    title: "Unable to mob floor",
+    instructions: "Buy new mop",
+    parentTitle: "Task: Mop floors",
+    locationId: "2549",
+    status: "active",
+    resolvedAt: null,
+    createdAt: currentUnixTimestamp(),
+  },
+  {
+    id: 5,
+    resolved: false,
+    critical: false,
+    title: "Test Ops Actions",
+    instructions: "Test Ops Actions Instructions",
+    locationId: "2549",
+    status: "inactive",
+    resolvedAt: null,
+    createdAt: currentUnixTimestamp(),
+  },
+  {
+    // closed, resolved task
+    id: 6,
+    parentId: "911",
+    parentType: "task",
+    resolved: true,
+    resolutionAction: "How was the issue resolved?",
+    title: "What was the issue?",
+    instructions: "What further action is required?",
+    critical: false,
+    locationId: "4703",
+    parentTitle:
+      "Review practitioner invoices prior to submission to Support Office",
+    status: "inactive",
+    resolvedAt: 1601184024,
+    createdAt: 1601183816,
+    updatedAt: 1601184022,
+  },
+  {
+    // closed, unresolved task
+    id: 7,
+    parentId: "652",
+    parentType: "task",
+    resolved: false,
+    resolutionAction: "Unable to resolve the issue",
+    title: "Unable to clean the back room",
+    instructions: "Purchase cleaning products",
+    critical: false,
+    locationId: "4703",
+    parentTitle: "Clinic opening process",
+    status: "inactive",
+    resolvedAt: null,
+    createdAt: 1599451544,
+    updatedAt: 1601264185,
+  },
+];
+
+export const mockOpsActions: OpsAction[] = mockOpsActionsSerialized.map(
+  (opsAction) => OpsAction.unserialize(opsAction),
+);
